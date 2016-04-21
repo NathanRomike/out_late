@@ -1,5 +1,4 @@
-# Tonight
-###### *An adaptation of ShakeItUp*
+# Tonight ###### *An adaptation of ShakeItUp*
 
 ##### 4.2016
 
