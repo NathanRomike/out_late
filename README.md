@@ -1,7 +1,7 @@
 # Tonight
 ##### *An adaptation of ShakeItUp*
 
-#### An app for choosing your evening plans
+#### When you can't decide what to do tonight.
 
 ##### Friday April 15th, 2016
 
