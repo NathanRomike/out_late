@@ -1,15 +1,13 @@
 # Tonight
-##### *An adaptation of ShakeItUp*
+###### *An adaptation of ShakeItUp*
 
-#### When you can't decide what to do tonight.
-
-##### Friday April 15th, 2016
+##### 4.2016
 
 #### By Midori Bowen, Kassidy Douglas, Illia Kuchko, Nathan Romike, Jeffrey Ruder, Christopher Siems
 
 ## Description
 
-Tonight is a date ramdomizer. Indecisiveness will never slow you down again!
+> Tonight is a date ramdomizer. Indecisiveness will never slow you down again!
 
 ## Setup
 
