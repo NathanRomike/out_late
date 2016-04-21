@@ -1,4 +1,5 @@
-# Tonight ###### *An adaptation of ShakeItUp*
+# Tonight 
+###### *An adaptation of ShakeItUp*
 
 ##### 4.2016
 
@@ -6,7 +7,7 @@
 
 ## Description
 
-> Tonight is a date ramdomizer. Indecisiveness will never slow you down again!
+Tonight is a date ramdomizer. Indecisiveness will never slow you down again!
 
 ## Setup
 
