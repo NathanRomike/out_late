@@ -58,7 +58,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Bind(R.id.backgroundImageView) ImageView backgroundImageView;
     @Bind(R.id.jumbotron) RelativeLayout jumbotron;
     @Bind(R.id.titleTextView) TextView mTitleTextView;
-    @Bind(R.id.poweredByYelpButton) ImageView mPoweredByYelpButton;
     public static ProgressDialog loadingDialog;
     public static GoogleApiClient mGoogleApiClient;
     public static Location mLastLocation;
@@ -89,7 +88,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mTitleTextView.setTypeface(journal);
 
         shakeButton.setOnClickListener(this);
-        mPoweredByYelpButton.setOnClickListener(this);
 
         locationLabel.addTextChangedListener(new TextWatcher() {
             @Override
@@ -228,13 +226,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     getDrinkPlaces(locationLabel.getText().toString());
                 }
                 break;
-            case R.id.poweredByYelpButton:
-                Intent poweredByYelpIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://m.yelp.com"));
-                startActivity(poweredByYelpIntent);
-                break;
         }
-
-
     }
 
     private void getDrinkForCurrentLocation() {

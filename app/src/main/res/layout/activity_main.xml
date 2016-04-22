@@ -20,7 +20,7 @@
 
     <RelativeLayout
         app:layout_widthPercent="80%"
-        app:layout_heightPercent="45%"
+        app:layout_heightPercent="20%"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -31,33 +31,19 @@
         android:background="@color/colorSecondaryText"
         android:translationZ="10dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/app_name"
-            android:id="@+id/titleTextView"
-            android:textSize="60sp"
-            android:textColor="@color/colorIcons"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:layout_centerHorizontal="true"
-            android:layout_above="@+id/locationTextView"
-            android:transitionName="shakeText"/>
-
         <EditText
-            android:layout_width="match_parent"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
+            android:paddingLeft="14dp"
             android:id="@+id/locationTextView"
             android:imeOptions="actionSearch"
             android:inputType="text"
-            android:layout_centerVertical="true"
-            android:gravity="center"
             android:hint="@string/search_text_hint"
             android:textColorHint="@color/colorIcons"
             android:textColor="@color/colorIcons"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:singleLine="true"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp" />
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true" />
 
         <Button
             android:layout_width="wrap_content"
@@ -65,36 +51,34 @@
             android:text="@string/search_button_blank"
             android:textSize="14sp"
             android:id="@+id/shakeButton"
-            android:layout_below="@+id/locationTextView"
             android:backgroundTint="@color/colorAccent"
             android:textColor="@color/colorIcons"
-            android:layout_centerHorizontal="true"
             android:padding="20dp"
-            android:alpha="1" />
+            android:alpha="1"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@+id/locationTextView"
+            android:layout_alignParentStart="false" />
 
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_widthPercent="50%"
-        app:layout_heightPercent="5%"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true">
+        app:layout_widthPercent="100%"
+        app:layout_heightPercent="30%">
 
 
-        <ImageView
+        <TextView
             android:layout_width="wrap_content"
-            android:layout_height="25dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginRight="5dp"
-            android:id="@+id/poweredByYelpButton"
-            android:scaleType="centerCrop"
-            android:src="@drawable/yelp_powered_btn_light"
-            android:elevation="5dp"
-            android:clickable="true"
-            android:alpha="0.75" />
-
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/app_name"
+            android:id="@+id/titleTextView"
+            android:textSize="60sp"
+            android:textColor="@color/colorIcons"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_centerHorizontal="true"
+            android:transitionName="shakeText"/>
     </RelativeLayout>
 
 </android.support.percent.PercentRelativeLayout>

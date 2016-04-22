@@ -21,6 +21,6 @@
     <string name="progress_txt">Hold on...</string>
 
     <string name="search_button_input">Shake up your night!</string>
-    <string name="search_button_blank">Or search near you!</string>
-    <string name="search_text_hint">Search by Address or City</string>
+    <string name="search_button_blank">Go!</string>
+    <string name="search_text_hint">Search...</string>
 </resources>
