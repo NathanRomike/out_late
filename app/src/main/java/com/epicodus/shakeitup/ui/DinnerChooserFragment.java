@@ -135,8 +135,6 @@ public class DinnerChooserFragment extends Fragment {
                         if (speed > SHAKE_THRESHOLD) {
                             long now = System.currentTimeMillis();
                             if (now - lastShakeTime > 1000) {
-                                ChooserActivity activity = (ChooserActivity) getActivity();
-                                activity.soundManager("plate");
                                 Vibrator vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
                                 if (vibrator.hasVibrator()) {
                                     vibrator.vibrate(300);

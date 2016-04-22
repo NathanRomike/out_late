@@ -68,12 +68,12 @@ public class ChooserActivity extends AppCompatActivity implements DrinkChooserFr
 
             }
 
-            shakeText.animate().alpha(0).setDuration(1000).withEndAction(new Runnable() {
-                @Override
-                public void run() {
-                    shakeText.setVisibility(View.GONE);
-                }
-            });
+//            shakeText.animate().alpha(0).setDuration(1000).withEndAction(new Runnable() {
+//                @Override
+//                public void run() {
+//                    shakeText.setVisibility(View.GONE);
+//                }
+//            });
 
 
         }
@@ -147,24 +147,4 @@ public class ChooserActivity extends AppCompatActivity implements DrinkChooserFr
         loadingDialog.setMessage(message);
         loadingDialog.setCancelable(false);
     }
-
-
-    public void soundManager(String soundName) {
-        if (mediaPlayer != null) {
-            mediaPlayer.reset();
-            mediaPlayer.release();
-        }
-
-        if (soundName.equals("ice")) {
-            mediaPlayer = MediaPlayer.create(this, R.raw.ice_glass);
-            mediaPlayer.start();
-        } else if (soundName.equals("plate")) {
-            mediaPlayer = MediaPlayer.create(this, R.raw.plate);
-            mediaPlayer.start();
-        } else if (soundName.equals("guitar")) {
-            mediaPlayer = MediaPlayer.create(this, R.raw.guitar);
-            mediaPlayer.start();
-        }
-    }
-
 }
