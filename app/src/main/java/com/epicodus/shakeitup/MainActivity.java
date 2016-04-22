@@ -219,7 +219,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         switch (v.getId()) {
             case R.id.shakeButton:
-                shakeAndBake(mTitleTextView);
+                initializeProgressDialog();
                 if (locationLabel.getText().length() == 0) {
                     getDrinkForCurrentLocation();
                 } else {
@@ -412,12 +412,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return true;
         }
         return super.dispatchKeyEvent(event);
-    }
-
-    private void shakeAndBake(View view) {
-        view.animate()
-            .rotation(3)
-            .setInterpolator(new CycleInterpolator(8))
-            .setDuration(1400);
     }
 }

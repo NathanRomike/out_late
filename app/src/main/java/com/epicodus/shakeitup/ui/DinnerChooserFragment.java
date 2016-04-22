@@ -225,8 +225,6 @@ public class DinnerChooserFragment extends Fragment {
                         addItemToList(destList, passedItem);
                     }
 
-                    shakeAndBake(instructionsText);
-
                     Picasso.with(getContext()).load(passedItem.getImageUrl()).fit().centerCrop().into((ImageView) getView().findViewById(R.id.dinnerImageView));
                     dinnerTextView.setText(passedItem.getCardText());
 
@@ -305,12 +303,5 @@ public class DinnerChooserFragment extends Fragment {
         myItemListAdapter1.list.clear();
         myItemListAdapter1.list.addAll(mDinnersArray);
         myItemListAdapter1.notifyDataSetChanged();
-    }
-
-    private void shakeAndBake(View view) {
-        view.animate()
-            .rotation(3)
-            .setInterpolator(new CycleInterpolator(8))
-            .setDuration(1400);
     }
 }

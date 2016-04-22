@@ -75,7 +75,6 @@ public class FunChooserFragment extends Fragment {
     private float last_x, last_y, last_z;
     private static final int SHAKE_THRESHOLD = 1500;
     private long lastShakeTime = 0;
-    private MediaPlayer mediaPlayer;
 
 
     public FunChooserFragment() {
@@ -90,7 +89,7 @@ public class FunChooserFragment extends Fragment {
                              Bundle savedInstanceState) {
         //this line reuses fragment layout from before
         View view = inflater.inflate(R.layout.fragment_chooser, container, false);
-//        ChooserActivity.loadingDialog.hide();
+        ChooserActivity.loadingDialog.hide();
         listView1 = (ListView) view.findViewById(R.id.listview1);
         funGridView = (GridView) view.findViewById(R.id.funGridView);
         funCardView = (CardView) view.findViewById(R.id.funCardView);
@@ -238,8 +237,6 @@ public class FunChooserFragment extends Fragment {
                         addItemToList(destList, passedItem);
                     }
 
-                    shakeAndBake(instructionsText);
-
                     Picasso.with(getContext()).load(passedItem.getImageUrl()).fit().centerCrop().into((ImageView) getView().findViewById(R.id.funImageView));
                     funTextView.setText(passedItem.getCardText());
 
@@ -326,12 +323,4 @@ public class FunChooserFragment extends Fragment {
         myItemListAdapter1.list.addAll(mFunArray);
         myItemListAdapter1.notifyDataSetChanged();
     }
-
-    private void shakeAndBake(View view) {
-        view.animate()
-            .rotation(3)
-            .setInterpolator(new CycleInterpolator(8))
-            .setDuration(1400);
-    }
-
 }

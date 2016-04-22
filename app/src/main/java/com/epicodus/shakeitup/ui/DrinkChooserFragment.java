@@ -224,8 +224,6 @@ public class DrinkChooserFragment extends Fragment {
                         mListener.onFirstItemDroppedInDropZone(passedItem);
                     }
 
-                    shakeAndBake(instructionsText);
-
                     Picasso.with(getContext()).load(passedItem.getImageUrl()).fit().centerCrop().into((ImageView) getView().findViewById(R.id.drinkImageView));
                     drinkTextView.setText(passedItem.getCardText());
 
@@ -288,13 +286,4 @@ public class DrinkChooserFragment extends Fragment {
         myItemListAdapter1.list.addAll(mDrinksArray);
         myItemListAdapter1.notifyDataSetChanged();
     }
-
-    private void shakeAndBake(View view) {
-        view.animate()
-            .rotation(3)
-            .setInterpolator(new CycleInterpolator(8))
-            .setDuration(1400);
-    }
-
-
 }
