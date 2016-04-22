@@ -1,12 +1,11 @@
-package com.epicodus.shakeitup.services;
+package com.epicodus.tonight.services;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
-import com.epicodus.shakeitup.Constants;
-import com.epicodus.shakeitup.R;
-import com.epicodus.shakeitup.models.Business;
+import com.epicodus.tonight.Constants;
+import com.epicodus.tonight.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,8 +19,6 @@ import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import se.akerfeldt.okhttp.signpost.OkHttpOAuthConsumer;
-import se.akerfeldt.okhttp.signpost.SigningInterceptor;
 
 /**
  * Created by Guest on 4/13/16.

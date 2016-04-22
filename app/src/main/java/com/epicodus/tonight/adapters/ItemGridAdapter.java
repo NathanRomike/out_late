@@ -1,4 +1,4 @@
-package com.epicodus.shakeitup.adapters;
+package com.epicodus.tonight.adapters;
 
 import android.app.Activity;
 import android.content.Context;
@@ -7,8 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.epicodus.shakeitup.R;
-import com.epicodus.shakeitup.models.Business;
+import com.epicodus.tonight.R;
+import com.epicodus.tonight.models.Business;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

@@ -1,9 +1,8 @@
-package com.epicodus.shakeitup.models;
+package com.epicodus.tonight.models;
 
 import android.util.Log;
 
-import com.epicodus.shakeitup.R;
-import com.epicodus.shakeitup.services.YelpService;
+import com.epicodus.tonight.services.YelpService;
 import com.google.android.gms.maps.model.LatLng;
 
 import org.parceler.Parcel;

@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:id="@+id/chooser_content_layout"
     android:background="@color/colorPrimaryDark"
-    tools:context="com.epicodus.shakeitup.ChooserActivity">
+    tools:context="com.epicodus.tonight.ChooserActivity">
 
 
     <TextView

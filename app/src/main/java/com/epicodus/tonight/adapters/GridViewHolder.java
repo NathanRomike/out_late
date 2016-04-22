@@ -1,6 +1,4 @@
-package com.epicodus.shakeitup.adapters;
-
-import android.widget.ImageView;
+package com.epicodus.tonight.adapters;
 
 /**
  * Created by Guest on 4/11/16.

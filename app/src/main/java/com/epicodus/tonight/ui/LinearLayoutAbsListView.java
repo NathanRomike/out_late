@@ -1,4 +1,4 @@
-package com.epicodus.shakeitup.ui;
+package com.epicodus.tonight.ui;
 
 import android.content.Context;
 import android.util.AttributeSet;

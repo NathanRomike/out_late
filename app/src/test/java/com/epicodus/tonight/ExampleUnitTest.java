@@ -1,4 +1,4 @@
-package com.epicodus.shakeitup;
+package com.epicodus.tonight;
 
 import org.junit.Test;
 

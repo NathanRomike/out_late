@@ -1,4 +1,4 @@
-package com.epicodus.shakeitup;
+package com.epicodus.tonight;
 
 import android.Manifest;
 import android.content.Intent;
@@ -20,7 +20,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.epicodus.shakeitup.models.Business;
+import com.epicodus.tonight.models.Business;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;

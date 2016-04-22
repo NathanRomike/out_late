@@ -1,4 +1,4 @@
-package com.epicodus.shakeitup;
+package com.epicodus.tonight;
 
 
 import android.app.ActivityOptions;
@@ -10,14 +10,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.TextView;
 
-import com.epicodus.shakeitup.models.Business;
-import com.epicodus.shakeitup.services.YelpService;
-import com.epicodus.shakeitup.ui.DinnerChooserFragment;
-import com.epicodus.shakeitup.ui.DrinkChooserFragment;
-import com.epicodus.shakeitup.ui.FunChooserFragment;
+import com.epicodus.tonight.models.Business;
+import com.epicodus.tonight.services.YelpService;
+import com.epicodus.tonight.ui.DinnerChooserFragment;
+import com.epicodus.tonight.ui.DrinkChooserFragment;
+import com.epicodus.tonight.ui.FunChooserFragment;
 
 import org.parceler.Parcels;
 

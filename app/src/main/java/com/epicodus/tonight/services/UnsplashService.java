@@ -1,12 +1,10 @@
-package com.epicodus.shakeitup.services;
+package com.epicodus.tonight.services;
 
 import android.content.Context;
 import android.util.Log;
 
-import com.epicodus.shakeitup.Constants;
-import com.epicodus.shakeitup.R;
+import com.epicodus.tonight.Constants;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -18,7 +16,6 @@ import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import se.akerfeldt.okhttp.signpost.OkHttpOAuthConsumer;
 
 /**
  * Created by Guest on 4/13/16.

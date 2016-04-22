@@ -1,12 +1,12 @@
-package com.epicodus.shakeitup.adapters;
+package com.epicodus.tonight.adapters;
 
 import android.content.Context;
 import android.view.DragEvent;
 import android.view.View;
 import android.widget.AbsListView;
 
-import com.epicodus.shakeitup.models.Business;
-import com.epicodus.shakeitup.models.PassObject;
+import com.epicodus.tonight.models.Business;
+import com.epicodus.tonight.models.PassObject;
 
 import java.util.List;
 

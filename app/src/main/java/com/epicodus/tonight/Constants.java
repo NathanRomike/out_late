@@ -1,4 +1,4 @@
-package com.epicodus.shakeitup;
+package com.epicodus.tonight;
 
 /**
  * Created by Guest on 4/15/16.

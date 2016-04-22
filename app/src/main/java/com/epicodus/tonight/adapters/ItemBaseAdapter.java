@@ -1,4 +1,4 @@
-package com.epicodus.shakeitup.adapters;
+package com.epicodus.tonight.adapters;
 
 /**
  * Created by Guest on 4/11/16.
@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 
-import com.epicodus.shakeitup.models.Business;
+import com.epicodus.tonight.models.Business;
 
 import java.util.List;
 

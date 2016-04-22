@@ -1,4 +1,4 @@
-package com.epicodus.shakeitup.models;
+package com.epicodus.tonight.models;
 
 import android.view.View;
 

@@ -1,4 +1,4 @@
-package com.epicodus.shakeitup;
+package com.epicodus.tonight;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

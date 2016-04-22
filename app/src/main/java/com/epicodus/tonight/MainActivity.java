@@ -1,4 +1,4 @@
-package com.epicodus.shakeitup;
+package com.epicodus.tonight;
 
 import android.Manifest;
 import android.app.ProgressDialog;
@@ -9,7 +9,6 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.location.Location;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -26,7 +25,6 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
-import android.view.animation.CycleInterpolator;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -34,10 +32,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.epicodus.shakeitup.models.Business;
-import com.epicodus.shakeitup.services.GeolocationService;
-import com.epicodus.shakeitup.services.UnsplashService;
-import com.epicodus.shakeitup.services.YelpService;
+import com.epicodus.tonight.models.Business;
+import com.epicodus.tonight.services.GeolocationService;
+import com.epicodus.tonight.services.UnsplashService;
+import com.epicodus.tonight.services.YelpService;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;

@@ -1,13 +1,10 @@
-package com.epicodus.shakeitup.services;
+package com.epicodus.tonight.services;
 
 import android.content.Context;
 import android.util.Log;
-import android.widget.Switch;
 
-import com.epicodus.shakeitup.Constants;
-import com.epicodus.shakeitup.R;
-import com.epicodus.shakeitup.models.Business;
-import com.google.android.gms.common.api.BooleanResult;
+import com.epicodus.tonight.Constants;
+import com.epicodus.tonight.models.Business;
 import com.google.android.gms.maps.model.LatLng;
 
 import org.json.JSONArray;

@@ -1,116 +1,123 @@
-package com.epicodus.shakeitup.ui;
+package com.epicodus.tonight.ui;
+
 
 import android.app.Activity;
 import android.content.ClipData;
-
-import android.content.res.AssetManager;
-import android.graphics.Typeface;
-import android.os.Build;
-
 import android.content.Context;
-import android.graphics.drawable.ColorDrawable;
+import android.graphics.Typeface;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.media.MediaPlayer;
-
 import android.os.Bundle;
 import android.os.Vibrator;
-import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
-import android.util.Log;
 import android.view.DragEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.CycleInterpolator;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.epicodus.shakeitup.ChooserActivity;
-import com.epicodus.shakeitup.R;
-import com.epicodus.shakeitup.adapters.ItemBaseAdapter;
-import com.epicodus.shakeitup.adapters.ItemGridAdapter;
-import com.epicodus.shakeitup.adapters.ItemListAdapter;
-import com.epicodus.shakeitup.models.Business;
-import com.epicodus.shakeitup.models.PassObject;
+import com.epicodus.tonight.ChooserActivity;
+import com.epicodus.tonight.R;
+import com.epicodus.tonight.adapters.ItemBaseAdapter;
+import com.epicodus.tonight.adapters.ItemGridAdapter;
+import com.epicodus.tonight.adapters.ItemListAdapter;
+import com.epicodus.tonight.models.Business;
+import com.epicodus.tonight.models.PassObject;
 import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
-public class DrinkChooserFragment extends Fragment {
-    List<Business> mDrinksArray, mSelectedBusinessesArray;
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class FunChooserFragment extends Fragment {
+    List<Business> mFunArray, mSelectedBusinessesArray;
     ListView listView1;
-    GridView drinkGridView;
-    CardView drinkCardView;
-    TextView drinkTextView;
-    TextView shakeTextView;
-    TextView instructionsText;
     ItemListAdapter myItemListAdapter1;
     ItemGridAdapter myItemGridAdapter3;
     LinearLayoutAbsListView area1, area3;
-    private OnFirstItemDroppedInDropZoneListener mListener;
+    private OnThirdItemDroppedInDropZone mListener;
+    Business mDrinkPassed;
+    Business mDinnerPassed;
+    GridView drinkGridView;
+    GridView dinnerGridView;
+    GridView funGridView;
+    CardView dinnerCardView;
+    CardView drinkCardView;
+    CardView funCardView;
+    TextView funTextView;
+    TextView dinnerTextView;
+    TextView drinkTextView;
+    TextView instructionsText;
+    TextView shakeTextView;
+    ImageView mDrinkImageView;
+    ImageView mDinnerImageView;
+
 
     private SensorManager mSensorManager;
     private Sensor mSensor;
+    private SensorEventListener listener;
     private long lastUpdate = 0;
     private float last_x, last_y, last_z;
     private static final int SHAKE_THRESHOLD = 1500;
     private long lastShakeTime = 0;
-    private SensorEventListener listener;
-    private MediaPlayer mediaPlayer;
 
-    public DrinkChooserFragment() {
+
+    public FunChooserFragment() {
     }
 
-    public static DrinkChooserFragment newInstance() {
-        return new DrinkChooserFragment();
-    }
-
-    public ItemListAdapter getAdapter() {
-        return myItemListAdapter1;
+    public static FunChooserFragment newInstance() {
+        return new FunChooserFragment();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        //this line reuses fragment layout from before
         View view = inflater.inflate(R.layout.fragment_chooser, container, false);
+        ChooserActivity.loadingDialog.hide();
         listView1 = (ListView) view.findViewById(R.id.listview1);
+        funGridView = (GridView) view.findViewById(R.id.funGridView);
+        funCardView = (CardView) view.findViewById(R.id.funCardView);
+        funTextView = (TextView) view.findViewById(R.id.funTextView);
+        dinnerTextView = (TextView) view.findViewById(R.id.dinnerTextView);
+        drinkTextView = (TextView) view.findViewById(R.id.drinkTextView);
+        dinnerGridView = (GridView) view.findViewById(R.id.dinnerGridView);
+        dinnerCardView = (CardView) view.findViewById(R.id.dinnerCardView);
         drinkGridView = (GridView) view.findViewById(R.id.drinkGridView);
         drinkCardView = (CardView) view.findViewById(R.id.drinkCardView);
-        drinkTextView = (TextView) view.findViewById(R.id.drinkTextView);
+        shakeTextView = (TextView) view.findViewById(R.id.shakeToShuffle);
+        instructionsText = (TextView) view.findViewById(R.id.instructionsText);
+
+        mDrinkImageView = (ImageView) view.findViewById(R.id.drinkImageView);
+        mDinnerImageView = (ImageView) view.findViewById(R.id.dinnerImageView);
         area1 = (LinearLayoutAbsListView) view.findViewById(R.id.pane1);
         area3 = (LinearLayoutAbsListView) view.findViewById(R.id.pane3);
-        shakeTextView = (TextView) view.findViewById(R.id.shakeToShuffle);
-
-        instructionsText = (TextView) view.findViewById(R.id.instructionsText);
+        area1.setOnDragListener(myOnDragListener);
+        area3.setOnDragListener(myOnDragListener);
+        area1.setAbsListView(listView1);
+        area3.setAbsListView(funGridView);
+        initItems();
         TextView shakeToShuffle = (TextView) view.findViewById(R.id.shakeToShuffle);
         Typeface journal = Typeface.createFromAsset(getActivity().getAssets(), "fonts/journal.ttf");
         instructionsText.setTypeface(journal);
         shakeToShuffle.setTypeface(journal);
 
-        area1.setOnDragListener(myOnDragListener);
-        area3.setOnDragListener(myOnDragListener);
-        area1.setAbsListView(listView1);
-        area3.setAbsListView(drinkGridView);
-
-        initItems();
-        myItemListAdapter1 = new ItemListAdapter(getContext(), mDrinksArray);
+        myItemListAdapter1 = new ItemListAdapter(getContext(), mFunArray);
         myItemGridAdapter3 = new ItemGridAdapter(getContext(), mSelectedBusinessesArray);
-
         listView1.setAdapter(myItemListAdapter1);
-        drinkGridView.setAdapter(myItemGridAdapter3);
+        funGridView.setAdapter(myItemGridAdapter3);
 
         mSensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
         mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -137,7 +144,7 @@ public class DrinkChooserFragment extends Fragment {
                                 if (vibrator.hasVibrator()) {
                                     vibrator.vibrate(300);
                                 }
-                                randomizeDrink();
+                                randomizeFun();
                             }
 
                             lastShakeTime = System.currentTimeMillis();
@@ -157,7 +164,9 @@ public class DrinkChooserFragment extends Fragment {
         };
 
         mSensorManager.registerListener(listener, mSensor, SensorManager.SENSOR_DELAY_NORMAL);
+
         listView1.setOnItemLongClickListener(myOnItemLongClickListener);
+        funGridView.setOnItemLongClickListener(myOnItemLongClickListener);
 
         return view;
 
@@ -168,7 +177,7 @@ public class DrinkChooserFragment extends Fragment {
         @Override
         public boolean onItemLongClick(AdapterView<?> parent, View view,
                                        int position, long id) {
-            Business selectedItem = (Business)(parent.getItemAtPosition(position));
+            Business selectedItem = (Business) (parent.getItemAtPosition(position));
 
             ItemBaseAdapter associatedAdapter = (ItemBaseAdapter)(parent.getAdapter());
             List<Business> associatedList = associatedAdapter.getList();
@@ -205,36 +214,38 @@ public class DrinkChooserFragment extends Fragment {
                 case DragEvent.ACTION_DRAG_EXITED:
                     break;
                 case DragEvent.ACTION_DROP:
+                    mSelectedBusinessesArray.clear();
                     PassObject passObj = (PassObject)event.getLocalState();
                     View view = passObj.getView();
                     Business passedItem = passObj.getItem();
                     List<Business> srcList = passObj.getSrcList();
-                    AbsListView oldParent = (AbsListView)view.getParent();
-                    ItemBaseAdapter srcAdapter = (ItemBaseAdapter)(oldParent.getAdapter());
-
+                    AbsListView parent = (AbsListView)view.getParent();
+                    ItemBaseAdapter srcAdapter = (ItemBaseAdapter)(parent.getAdapter());
                     LinearLayoutAbsListView newParent = (LinearLayoutAbsListView)v;
                     ItemBaseAdapter destAdapter = (ItemBaseAdapter)(newParent.absListView.getAdapter());
                     List<Business> destList = destAdapter.getList();
+
+                    initializeCard(passedItem, R.id.funImageView);
+
+                    addItemToList(destList, mDrinkPassed);
+                    addItemToList(destList, mDinnerPassed);
 
                     if(removeItemToList(srcList, passedItem)){
                         addItemToList(destList, passedItem);
                     }
 
-                    if (mListener != null) {
-                        mListener.onFirstItemDroppedInDropZone(passedItem);
-                    }
+                    Picasso.with(getContext()).load(passedItem.getImageUrl()).fit().centerCrop().into((ImageView) getView().findViewById(R.id.funImageView));
+                    funTextView.setText(passedItem.getCardText());
 
-                    Picasso.with(getContext()).load(passedItem.getImageUrl()).fit().centerCrop().into((ImageView) getView().findViewById(R.id.drinkImageView));
-                    drinkTextView.setText(passedItem.getCardText());
-
-                    drinkCardView.setVisibility(View.VISIBLE);
-                    drinkGridView.setVisibility(View.GONE);
+                    funGridView.setVisibility(View.GONE);
+                    funCardView.setVisibility(View.VISIBLE);
 
                     srcAdapter.notifyDataSetChanged();
                     destAdapter.notifyDataSetChanged();
 
-                    mSensorManager.unregisterListener(listener);
+                    mListener.onThirdItemDroppedInDropZone(mDrinkPassed, mDinnerPassed, passedItem);
 
+                    mSensorManager.unregisterListener(listener);
                     break;
                 case DragEvent.ACTION_DRAG_ENDED:
                 default:
@@ -246,11 +257,16 @@ public class DrinkChooserFragment extends Fragment {
 
     };
 
+    private void initializeCard(Business business, int viewId) {
+        Picasso.with(getContext()).load(business.getImageUrl()).fit().centerCrop().into((ImageView) getView().findViewById(viewId));
+        funTextView.setText(business.getCardText());
+    }
+
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
-            mListener = (OnFirstItemDroppedInDropZoneListener) activity;
+            mListener = (OnThirdItemDroppedInDropZone) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString() + " must implement OnItemDroppedInZoneListener");
         }
@@ -265,7 +281,25 @@ public class DrinkChooserFragment extends Fragment {
     private void initItems(){
         mSelectedBusinessesArray = new ArrayList<>();
         Bundle bundle = getArguments();
-        mDrinksArray = Parcels.unwrap(bundle.getParcelable("drinksArray"));
+        mDrinkPassed = Parcels.unwrap(bundle.getParcelable("drink"));
+        mDinnerPassed = Parcels.unwrap(bundle.getParcelable("dinner"));
+
+        instructionsText.setText(R.string.funChoiceInstructions);
+        instructionsText.setTextColor(getResources().getColor(R.color.colorFunAccent));
+
+        Picasso.with(getContext()).load(mDrinkPassed.getImageUrl()).fit().centerCrop().into(mDrinkImageView);
+        Picasso.with(getContext()).load(mDinnerPassed.getImageUrl()).fit().centerCrop().into(mDinnerImageView);
+
+        drinkTextView.setText(mDrinkPassed.getCardText());
+        dinnerTextView.setText(mDinnerPassed.getCardText());
+
+        drinkGridView.setVisibility(View.GONE);
+        drinkCardView.setVisibility(View.VISIBLE);
+        dinnerGridView.setVisibility(View.GONE);
+        dinnerCardView.setVisibility(View.VISIBLE);
+        funGridView.setVisibility(View.VISIBLE);
+
+        mFunArray = Business.getRandomFun();
     }
 
     private boolean removeItemToList(List<Business> items, Business item){
@@ -276,14 +310,14 @@ public class DrinkChooserFragment extends Fragment {
         return items.add(item);
     }
 
-    public interface OnFirstItemDroppedInDropZoneListener {
-        void onFirstItemDroppedInDropZone(Business item);
+    public interface OnThirdItemDroppedInDropZone {
+        void onThirdItemDroppedInDropZone(Business firstItem, Business secondItem, Business thirdItem);
     }
 
-    private void randomizeDrink() {
-        mDrinksArray = Business.getRandomDrink();
+    private void randomizeFun() {
+        mFunArray = Business.getRandomFun();
         myItemListAdapter1.list.clear();
-        myItemListAdapter1.list.addAll(mDrinksArray);
+        myItemListAdapter1.list.addAll(mFunArray);
         myItemListAdapter1.notifyDataSetChanged();
     }
 }
